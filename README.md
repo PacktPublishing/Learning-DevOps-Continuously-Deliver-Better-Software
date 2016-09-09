@@ -11,4 +11,5 @@ Code repository for Learning-DevOps: Continuously Deliver Better Software
 * What traps, pitfalls and hurdles to look out for as you implement CD and DevOps
 
 ###Note
-Module 3 does not contain code.[Click here] (https://docs.google.com/forms/d/e/1FAIpQLSe5qwunkGf6PUvzPirPDtuy1Du5Rlzew23UBp2S-P3wB-GcwQ/viewform) if you have any feedback or suggestions.
+Modules 1 and 2 have code arranged by chapter (for the chapters that have code). Module 3 does not contain code. 
+[Click here](https://docs.google.com/forms/d/e/1FAIpQLSe5qwunkGf6PUvzPirPDtuy1Du5Rlzew23UBp2S-P3wB-GcwQ/viewform) if you have any feedback or suggestions.
