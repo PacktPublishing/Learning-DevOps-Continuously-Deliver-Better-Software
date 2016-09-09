@@ -1,0 +1,138 @@
+#!/bin/sh
+
+SHUTDOWN_WAIT=30
+
+export APP_USER="{{ tomcat.appuser }}"
+export JAVA_HOME="{{ tomcat.java.home }}"
+export CATALINA_HOME="{{ tomcat.catalina.home }}"
+export CATALINA_PID="{{ tomcat.catalina.pid }}"
+
+SU="su"
+
+start() {
+  isrunning
+
+  if [ "$?" = 0 ]; then
+    echo "Tomcat is already running"
+    return 0
+  fi
+
+  # Change directory to prevent path problems
+  cd $CATALINA_HOME
+
+  # Remove pidfile if still around
+  test -f $CATALINA_PID && rm -f $CATALINA_PID
+
+  $SU $APP_USER -c "umask 0002; $CATALINA_HOME/bin/catalina.sh start" > /dev/null
+}
+
+stop() {
+  isrunning
+
+  if [ "$?" = 1 ]; then
+    echo "Tomcat is already stopped"
+    rm -f $CATALINA_PID # remove pidfile if still around
+    return 0
+  fi
+
+  echo -n "Waiting for Tomcat to exit (${SHUTDOWN_WAIT} sec.): "
+
+  count=0
+  until [ "$pid" = "" ] || [ $count -gt $SHUTDOWN_WAIT ]; do
+    $SU $APP_USER -c "$CATALINA_HOME/bin/catalina.sh stop -force" > /dev/null
+    findpid
+
+    echo -n "."
+    sleep 3
+    count=$((count+3))
+  done
+
+  echo ""
+
+  if [ "$count" -gt "$SHUTDOWN_WAIT" ]; then
+    echo "Forcing Tomcat to stop"
+    /bin/kill -9 $pid && sleep 5
+  fi
+
+  # check if tomcat is still around, this will be our exit status
+  ! isrunning
+}
+
+findpid() {
+  pid=""
+  #pid=$(pgrep -U $APP_USER -f "^$JAVA_HOME/bin/java.*cpatalina.base=$CATALINA_HOME")
+  pid=$(ps -fu $APP_USER | grep "Dcatalina.home=$CATALINA_HOME" | awk {'print $2'})
+
+  # validate output of pgrep
+  if ! [ "$pid" = "" ] && ! [ "$pid" -gt 0 ]; then
+    echo "Unable to determine if Tomcat is running"
+    exit 1
+  fi
+}
+
+isrunning() {
+
+  findpid
+
+  if [ "$pid" = "" ]; then
+    return 1
+  elif [ "$pid" -gt 0 ]; then
+    return 0
+  fi
+}
+
+case "$1" in
+  start)
+    start
+    RETVAL=$?
+
+    if [ "$RETVAL" = 0 ]; then
+      echo "Started Tomcat"
+    else
+      echo "Not able to start Tomcat"
+    fi
+    ;;
+
+  stop)
+    stop
+    RETVAL=$?
+
+    if [ "$RETVAL" = 0 ]; then
+      echo "Stopped Tomcat"
+    else
+      echo "Not able to stop Tomcat"
+    fi
+  ;;
+
+  restart)
+    stop
+    sleep 5
+    start
+    RETVAL=$?
+
+    if [ "$RETVAL" = 0 ]; then
+      echo "Restarted Tomcat"
+    else
+      echo "Not able to restart Tomcat"
+    fi
+  ;;
+
+  status)
+    isrunning
+    RETVAL=$?
+
+    if [ "$RETVAL" = 0 ]; then
+      echo "Tomcat (pid $pid) is running..."
+    else
+      echo "Tomcat is stopped"
+      RETVAL=3
+    fi
+  ;;
+
+  *)
+    echo "Usage: $0 {start|stop|restart|status}."
+  ;;
+
+esac
+
+exit $RETVAL

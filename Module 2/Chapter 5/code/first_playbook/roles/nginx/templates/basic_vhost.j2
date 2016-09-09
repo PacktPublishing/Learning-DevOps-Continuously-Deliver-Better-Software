@@ -1,0 +1,11 @@
+ server {
+
+        server_name {{ item.value.server_name }};
+        root {{ item.value.vhost_root }};
+        index index.html index.htm;
+
+        location / {
+
+        	try_files $uri $uri/ =404;
+        }
+}

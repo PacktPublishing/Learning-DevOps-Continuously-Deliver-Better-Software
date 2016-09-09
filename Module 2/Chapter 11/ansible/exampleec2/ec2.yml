@@ -1,0 +1,22 @@
+- hosts: ec2
+  hosts: 127.0.0.1
+  connection: local
+  tasks:
+    - name: 'Create EC2 instance'
+      ec2:
+          aws_access_key: AKIAICW3HOQKY6LMCD4A
+          aws_secret_key: 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
+          key_name: test
+          region: us-west-2
+          group: webserver
+          instance_type: t2.micro
+          image: ami-5189a661
+          wait: yes
+          wait_timeout: 500
+
+          monitoring: yes
+          vpc_subnet_id: subnet-89770eec
+          assign_public_ip: yes
+          assign_public_ip: yes
+
+

@@ -1,0 +1,10 @@
+- name: Deploy Nginx configuration
+  template: src=nginx.j2 dest="/etc/nginx/nginx.conf"
+  notify: restart nginx
+
+- name: Add File limits
+  lineinfile: dest=/etc/security/limits.conf line='www-data          -       nofile          65535' owner=root group=root mode=0644
+  notify: restart nginx
+
+- name: Remove defaults
+  file: path="/etc/nginx/sites-enabled/default" state=absent

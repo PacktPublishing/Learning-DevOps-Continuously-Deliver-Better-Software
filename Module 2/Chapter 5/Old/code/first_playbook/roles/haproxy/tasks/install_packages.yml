@@ -1,0 +1,8 @@
+- name: "Add HAProxy repo"
+  apt_repository: repo="deb http://ppa.launchpad.net/vbernat/haproxy-1.5/ubuntu trusty main" state=present
+
+- name: Install HAProxy
+  apt: name=haproxy state=installed force=yes
+
+- name: Install HATop
+  apt: name=hatop state=installed

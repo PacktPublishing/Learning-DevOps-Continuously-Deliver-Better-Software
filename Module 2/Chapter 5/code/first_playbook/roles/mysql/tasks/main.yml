@@ -1,0 +1,5 @@
+---
+# tasks file for mysql
+- include: install_packages.yml
+- include: configure_mysql.yml
+- include: create_blog_db.yml

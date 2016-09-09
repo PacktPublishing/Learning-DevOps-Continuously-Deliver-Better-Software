@@ -1,0 +1,5 @@
+- name: Create Tomcat Group
+  group: name=tomcat gid=5000
+
+- name: Create Athoris User
+  user: name=tomcat comment="Tomcat App User" uid=5000  group=5000

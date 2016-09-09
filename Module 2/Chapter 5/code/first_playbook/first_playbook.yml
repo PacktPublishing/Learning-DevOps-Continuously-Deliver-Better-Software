@@ -1,0 +1,41 @@
+  - name: Manage Common Items
+    hosts: all
+    remote_user: "{{ remote_user }}"
+    sudo: yes
+
+    roles:
+          - { role: common, tags: ['common'] }
+
+  - name: Manage Nginx
+    hosts: nginx
+    remote_user: "{{ remote_user }}"
+    sudo: yes
+
+    roles:
+          - { role: nginx, tags: ['nginx'] }
+
+  - name: Manage Tomcat
+    hosts: tomcat
+    remote_user: "{{ remote_user }}"
+    sudo: yes
+
+    roles:
+          - { role: tomcat, tags: ['tomcat'] }
+
+
+  - name: Manage MySQL
+    hosts: mysql
+    remote_user: "{{ remote_user }}"
+    sudo: yes
+
+    roles:
+          - { role: mysql, tags: ['mysql'] }
+
+  - name: Manage HAProxy
+    hosts: haproxy
+    remote_user: "{{ remote_user }}"
+    sudo: yes
+
+    roles:
+          - { role: haproxy, tags: ['haproxy'] }
+

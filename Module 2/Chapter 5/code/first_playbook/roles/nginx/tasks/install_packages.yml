@@ -1,0 +1,5 @@
+- name: "Refresh Apt Cache"
+  apt: update_cache=true
+
+- name: "Install Nginx packages"
+  apt: name=nginx state=latest

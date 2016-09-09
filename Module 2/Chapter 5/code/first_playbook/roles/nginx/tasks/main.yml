@@ -1,0 +1,5 @@
+---
+# tasks file for nginx
+- include: install_packages.yml
+- include: configure_nginx.yml
+- include: configure_vhosts.yml

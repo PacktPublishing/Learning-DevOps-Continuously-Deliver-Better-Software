@@ -1,0 +1,9 @@
+[loadbalancer]
+zaphod ansible_ssh_host=172.16.84.129
+
+[web]
+arthur ansible_ssh_host=172.16.84.128
+ford ansible_ssh_host=172.16.84.130
+
+[database]
+babel ansible_ssh_host=172.16.84.130

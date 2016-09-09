@@ -1,0 +1,5 @@
+- name: "deploy setenv.sh"
+  template: src=setenv.j2 dest=/usr/local/apache-tomcat-8.0.23/bin/setenv.sh owner=tomcat group=tomcat
+
+- name: "Deploy startup script"
+  template: src=tomcat.j2 dest=/etc/init.d/tomcat owner=root mode=700

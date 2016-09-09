@@ -1,0 +1,18 @@
+users:
+  admin:
+    state: present
+    comment: "Administrator User"
+    shell: "/bin/bash"
+    uid: 5110
+    gid: 5110
+    password: "$6$5HIi7W8lR.Flg$DWIvV6B/OGgsiQUtMxfmaP4CkX6fu/t4DplUH3EZL1N5prbSau5soD15P70YPmDsH4Puon8vDnkblfO0745iT/"
+    sshkey: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDd/nW7kP+evZOgrc9RklZw6UsiOd/cTs9qLTitk2p3LIGbw4sjlcSLMxd57DPN+J9j+ksvpZf93lCe0pTW1Fe9H+TNVOjAqX3bXCMFpguEDZY7FjwEQzPdpYw//xxIpCJnQ2MIYtYVaede3zCUifz+cCJaHAuHSxZjhAX5vjVlsrEY5vHvaH+OcNyHzXBQFrOTDh475bFIZv6NMiPs9g3zVi72829lBFluPqWGc0AmfzxMTs6m0AZYaxIPES0RNIy4GvVR0EUaY0TWJvMV+OI2ISGSrfvthWabL+6hPbqtK8vR70JAy12K21d3DdAWVlkVLUjx7eIfflTfhbuN6pWF"
+
+  testuser:
+    state: present
+    comments: "Example User"
+    shell: "/bin/bash"
+    uid: 510
+    gid: 510
+    password: "$6$5HIi7W8lR.Flg$DWIvV6B/OGgsiQUtMxfmaP4CkX6fu/t4DplUH3EZL1N5prbSau5soD15P70YPmDsH4Puon8vDnkblfO0745iT/"
+    sshkey: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDd/nW7kP+evZOgrc9RklZw6UsiOd/cTs9qLTitk2p3LIGbw4sjlcSLMxd57DPN+J9j+ksvpZf93lCe0pTW1Fe9H+TNVOjAqX3bXCMFpguEDZY7FjwEQzPdpYw//xxIpCJnQ2MIYtYVaede3zCUifz+cCJaHAuHSxZjhAX5vjVlsrEY5vHvaH+OcNyHzXBQFrOTDh475bFIZv6NMiPs9g3zVi72829lBFluPqWGc0AmfzxMTs6m0AZYaxIPES0RNIy4GvVR0EUaY0TWJvMV+OI2ISGSrfvthWabL+6hPbqtK8vR70JAy12K21d3DdAWVlkVLUjx7eIfflTfhbuN6pWF"

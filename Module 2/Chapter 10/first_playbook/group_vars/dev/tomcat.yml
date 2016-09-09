@@ -1,0 +1,21 @@
+tomcat:
+    appgroup: tomcat
+    appuser: tomcat
+    gid: 5000
+    uid: 5000
+
+    java:
+        home: '/usr/lib/jvm/java-7-openjdk-amd64/'
+        opts: '
+            -Duser.timezone=UTC
+            -Dfile.encoding=UTF8
+            -Xmx512m
+            -Xms512m
+            '
+    catalina:
+        home: '/usr/local/apache-tomcat-8.0.21/'
+        pid:  '/usr/local/apache-tomcat-8.0.21/temp/tomcat.pid'
+        opts: '-Dcom.sun.management.jmxremote
+               -Dcom.sun.management.jmxremote.port=8082
+               -Dcom.sun.management.jmxremote.authenticate=false
+               -Dcom.sun.management.jmxremote.ssl=false'

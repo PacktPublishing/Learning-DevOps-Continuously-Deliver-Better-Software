@@ -1,0 +1,4 @@
+---
+# tasks file for common
+- include: create_users.yml
+- include: install_packages.yml

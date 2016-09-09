@@ -1,0 +1,11 @@
+haproxy:
+  frontend_ip: 192.168.1.1
+  maxconns: 4096
+  backlog: 2
+  timeout_q: 400ms
+  timoutconnect: 5000ms
+  timeoutclient: 5000ms
+  timoutserver: 5000ms
+  http_timeout: 15s
+  balance: leastconn
+  frontend_port: 83

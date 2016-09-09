@@ -1,0 +1,17 @@
+[nginx]
+172.16.84.128
+
+[tomcat]
+46.101.4.34
+
+[mysql]
+172.16.84.128
+
+[haproxy]
+172.16.84.128
+
+[dev:children]
+nginx
+tomcat
+mysql
+haproxy

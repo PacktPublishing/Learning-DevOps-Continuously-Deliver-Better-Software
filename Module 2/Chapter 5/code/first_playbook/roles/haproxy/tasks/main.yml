@@ -1,0 +1,5 @@
+---
+# tasks file for haproxy
+- include: install_packages.yml
+- include: configure_haproxy.yml
+
